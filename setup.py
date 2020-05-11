@@ -8,10 +8,10 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-pure-pagination',
-    version='0.3.0',
-    url='https://github.com/jamespacileo/django-pure-pagination/',
-    author='James Pacileo',
-    author_email='jamespacileo@gmail.com',
+    version='0.3.1',
+    url='https://github.com/junly917/django-pure-pagination/',
+    author='junly',
+    author_email='junly_huang@sina.com',
     description='''django-pure-pagination provides advanced pagination features
                    and is fully compatible with existing code based on Django's
                    core 
