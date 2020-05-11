@@ -204,7 +204,7 @@ class Page(object):
         """
         if self.paginator.request:
             # self.base_queryset['page'] = page_number
-            self.base_queryset[self.page_type] = page_number
+            self.base_queryset[self.paginator.page_type] = page_number
             return self.base_queryset.urlencode()
 
         # raise Warning("You must supply Paginator() with the request object for a proper querystring.")
