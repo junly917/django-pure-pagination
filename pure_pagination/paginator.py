@@ -16,14 +16,15 @@ SHOW_FIRST_PAGE_WHEN_INVALID = PAGINATION_SETTINGS.get("SHOW_FIRST_PAGE_WHEN_INV
 
 
 class Paginator(object):
-    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None):
+    def __init__(self, object_list, per_page, orphans=0, allow_empty_first_page=True, request=None, page_type='page'):
         self.object_list = object_list
         self.per_page = per_page
         self.orphans = orphans
         self.allow_empty_first_page = allow_empty_first_page
         self._num_pages = self._count = None
         self.request = request
-
+        self.page_type = page_type
+        
     def validate_number(self, number):
         "Validates the given 1-based page number."
         try:
@@ -202,11 +203,13 @@ class Page(object):
         GET parameters present.
         """
         if self.paginator.request:
-            self.base_queryset['page'] = page_number
+            # self.base_queryset['page'] = page_number
+            self.base_queryset[self.page_type] = page_number
             return self.base_queryset.urlencode()
 
         # raise Warning("You must supply Paginator() with the request object for a proper querystring.")
-        return 'page=%s' % page_number
+        # return 'page=%s' % page_number
+        return '{}={}'.format(self.page_type, page_number)
 
     def render(self):
         return render_to_string('pure_pagination/pagination.html', {
